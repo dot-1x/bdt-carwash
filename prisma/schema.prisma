@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPERADMIN
+  ADMIN
+}
+
+enum JenisKendaraan {
+  MOTOR
+  MOBIL
+  BUS
+  TRUK
+}
+
+model Customer {
+  id        Int         @id @default(autoincrement())
+  nama      String
+  alamat    String
+  telephon  String
+  Kendaraan Kendaraan[]
+  Transaksi Transaksi[]
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  nama     String
+  username String
+  password String
+  role     Role   @default(ADMIN)
+}
+
+model Karyawan {
+  id        Int         @id @default(autoincrement())
+  nama      String
+  status    String
+  shift     DateTime
+  Transaksi Transaksi[]
+}
+
+model Kendaraan {
+  id          Int            @id @default(autoincrement())
+  merk        String
+  jenis       JenisKendaraan
+  plat        String
+  id_customer Int
+  customer    Customer       @relation(fields: [id_customer], references: [id])
+  Transaksi   Transaksi[]
+}
+
+model Paket {
+  id         Int         @id @default(autoincrement())
+  nama_paket String
+  deskripsi  String
+  harga      Float
+  Transaksi  Transaksi[]
+}
+
+model Transaksi {
+  id           Int      @id @default(autoincrement())
+  id_kendaraan Int
+  id_customer  Int
+  id_karyawan  Int
+  id_paket     Int
+  tanggal      DateTime
+  total_harga  Float
+  metode       String
+  uang_dibayar Float
+
+  kendaraan Kendaraan @relation(fields: [id_kendaraan], references: [id])
+  customer  Customer  @relation(fields: [id_customer], references: [id])
+  karyawan  Karyawan  @relation(fields: [id_karyawan], references: [id])
+  paket     Paket     @relation(fields: [id_paket], references: [id])
+}
