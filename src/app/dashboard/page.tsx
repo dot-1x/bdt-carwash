@@ -1,4 +1,4 @@
-import { signOut } from "@/auth"
+import { signOut } from "@/features/auth/auth"
 
 export default function Page() {
   return (

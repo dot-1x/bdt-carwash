@@ -1,5 +1,5 @@
 "use client"
-import { authenticate } from "@/lib/authenticate"
+import { authenticate } from "@/features/auth/actions/authenticate"
 import { useSearchParams } from "next/navigation"
 import React, { Suspense, useActionState } from "react"
 
@@ -70,7 +70,6 @@ export default function Page() {
                 <p className="text-red-600">Email atau Password salah</p>
               )}
             </div>
-            {/* <LoginBtn setError={setError} /> */}
             <button
               type="submit"
               className="w-full bg-teal-400 text-white p-2 rounded text-lg font-bold"

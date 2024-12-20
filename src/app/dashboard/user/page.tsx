@@ -1,4 +1,4 @@
-import { auth } from "@/auth"
+import { auth } from "@/features/auth/auth"
 
 export default async function Page() {
   const session = await auth()
