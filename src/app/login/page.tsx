@@ -1,11 +1,20 @@
 "use client"
 import { authenticate } from "@/lib/authenticate"
-import React, { Usable, useActionState } from "react"
+import { useSearchParams } from "next/navigation"
+import React, { Suspense, useActionState } from "react"
 
-export default function Page(props: {
-  searchParams: Usable<{ callbackUrl: string | undefined }>
-}) {
-  const query = React.use(props.searchParams)
+function InputCallbackUrl() {
+  const query = useSearchParams()
+  return (
+    <input
+      type="hidden"
+      name="cbUrl"
+      value={query.get("callbackUrl") || undefined}
+    />
+  )
+}
+
+export default function Page() {
   const [message, action, isPending] = useActionState(authenticate, undefined)
   return (
     <main>
@@ -53,7 +62,9 @@ export default function Page(props: {
                 Lupa Sandi?
               </a>
             </div>
-            <input type="hidden" name="cbUrl" value={query.callbackUrl} />
+            <Suspense>
+              <InputCallbackUrl />
+            </Suspense>
             <div className="flex justify-between items-center mb-6">
               {message && (
                 <p className="text-red-600">Email atau Password salah</p>
