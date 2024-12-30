@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akun</title>
+
+  <!-- font google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .content {
+      flex: 1;
+      padding: 30px;
+      background-color: #f9f9f9;
+    }
+
+    /* Menata container agar memiliki margin dan padding yang cukup */
+    .container {
+      margin: 20px;
+      padding: 20px;
+    }
+
+    /* Mengatur kolom ke-3 agar teksnya bold */
+    table td:nth-child(3), table th:nth-child(3) {
+      font-weight: bold;
+    }
+
+    /* Menambahkan box pada profile-info */
+    .profile-diri {
+      text-align: center;
+      border: 1px solid #ccc; /* Warna border abu-abu */
+      padding: 20px; /* Memberi ruang di dalam box */
+      background-color: #ffffff; /* Warna latar belakang kotak */
+      border-radius: 8px; /* Membuat sudut box menjadi bulat */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+    }
+
+    /* Menghilangkan border pada tabel dan sel */
+    table {
+      border-spacing: 15px; /* Memberikan jarak antar sel */
+      margin-left: auto;
+      margin-right: auto;
+      border: none; /* Menghilangkan border tabel */
+    }
+
+    /* Menghilangkan border pada setiap sel */
+    table th, table td {
+      padding: 15px; /* Memberikan jarak di dalam setiap sel */
+      text-align: left;
+      border: none; /* Menghilangkan border pada sel */
+    }
+
+    /* Menata tombol logout */
+    .logout-button {
+      margin-top: 20px; /* Memberi jarak antara box dan tombol */
+      padding: 10px 20px; /* Memberi padding pada tombol */
+      background-color: #4880FF; /* Warna latar belakang tombol */
+      color: white; /* Warna teks tombol */
+      border: none; /* Menghapus border default */
+      border-radius: 5px; /* Membuat sudut tombol bulat */
+      cursor: pointer; /* Menambahkan pointer saat hover */
+      position: relative;
+      left: 380px;
+    }
+
+    .h2{
+      margin-left: 20px; /* Menambahkan jarak ke kiri untuk memindahkan ke kanan */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4 sidebar">
+        <div class="p-3 text-start">
+            <img src="aset/3titik.svg" alt="Logo Web" class="img-fluid mb-4" style="max-width: 150px;"><br>
+          <img src="aset/CarWash.svg" alt="Logo Web" class="img-fluid mb-4" style="max-width: 150px;">
+        </div>
+        <nav class="nav flex-column">
+          <a href="index.html" class="nav-link"><i class="bi bi-house"><img src="aset/Dashboard.svg" alt="" class="icon"></i> Dashboard</a>
+          <div>
+            <a href="#" class="nav-link"><i class="bi bi-folder"><img src="aset/kelola data.svg" alt="" class="icon"></i> Kelola Data</a>
+            <nav class="nav flex-column subnav">
+              <a href="admin.html" class="nav-link"><img src="aset/admin.svg" alt=""  class="icon">Admin</a>
+              <a href="karyawan.html" class="nav-link"><img src="aset/karyawan.svg" alt="" class="icon">Karyawan</a>
+              <a href="costumer.html" class="nav-link"><img src="aset/costumer.svg" alt="" class="icon">Customer</a>
+              <a href="kendaraan.html" class="nav-link"><img src="aset/Kendaraan.svg" alt="" class="icon">Kendaraan</a>
+              <a href="paket_pencucian.html" class="nav-link"><img src="aset/paket.svg" alt="" class="icon">Paket Pencucian</a>
+              <a href="transaksi_pencucian.html" class="nav-link"><img src="aset/transaksi.svg" alt="" class="icon">Transaksi Pencucian</a>
+            </nav>
+          </div>
+          <div>
+            <a href="#" class="nav-link"><i class="bi bi-graph-up"><img src="aset/laporan.svg" alt="" class="icon"></i> Laporan</a>
+            <nav class="nav flex-column subnav">
+              <a href="laporan_transaksi.html" class="nav-link"><img src="aset/laporan transaksi.svg" alt="" class="icon">Laporan Transaksi</a>
+              <a href="laporan_kinerja.html" class="nav-link"><img src="aset/laporan kinerja.svg" alt="" class="icon">Laporan Kinerja</a>
+            </nav>
+          </div>
+          <div>
+            <a href="#" class="nav-link"><i class="bi bi-gear"><img src="aset/pengaturan.svg" alt="" class="icon"></i> Pengaturan</a>
+            <nav class="nav flex-column subnav">
+              <a href="akun.html" class="nav-link"><img src="aset/akun.svg" alt="" class="icon">Akun</a>
+              <a href="#" class="nav-link"><img src="aset/keluar.svg" alt="" class="icon">Keluar</a>
+            </nav>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-9 col-md-8 main-content">
+        <div class="profile-section">  
+            <h3 class="h3 custom-title"></h3>   
+            <div class="profile-info d-flex align-items-center">
+              <img src="aset/Profile user.svg" alt="Profile" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0">Su'ud</h5>
+                <p class="mb-0">Admin</p>
+              </div>
+            </div>
+        </div>
+        <h2>Profil Diri</h2>
+        <div class="container">
+            <div class="profile-diri">
+              <table>
+                <tr><img src="aset/Profile user.svg" alt="Profile" class="rounded-circle me-3" width="50"><br></br></tr>
+                <tr>
+                    <td>Username</td>
+                    <td>:</td>
+                    <th>Su'ud</th>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <th>suud@gmail.com</th>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td>:</td>
+                    <th>0851234678</th>
+                </tr>
+                <tr>
+                    <td>Date Of Birth</td>
+                    <td>:</td>
+                    <th>15 October 2003</th>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>:</td>
+                  <th>Female</th>
+              </tr>
+            </table>
+                <button class="logout-button">Keluar</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
