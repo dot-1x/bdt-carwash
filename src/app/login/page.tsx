@@ -18,67 +18,51 @@ export default function Page() {
   const [message, action, isPending] = useActionState(authenticate, undefined)
   return (
     <main>
-      <div className="flex flex-col items-center">
-        <div className="flex items-center mb-8">
-          <i className="fas fa-car text-4xl text-blue-500"></i>
-          <span className="text-4xl font-bold ml-2">
-            <span className="text-black">Car</span>
-            <span className="text-blue-500">Wash</span>
-          </span>
+      <img src="/aset/3titik.svg" alt="3titik" className="tiga-titik" />
+      <img src="/aset/CarWash.svg" alt="carwash" className="carwash" />
+      <div className="container">
+        <div className="logo-container">
+          <img src="/aset/Car.svg" alt="Car Icon" className="car-icon" />
+          <img src="/aset/CarWash.svg" alt="CarWash Logo" className="logo" />
         </div>
-        <div className="bg-teal-700 p-8 rounded-lg shadow-lg w-80">
-          <h2 className="text-white text-2xl font-bold mb-6 text-center">
-            Login
-          </h2>
-          <form action={action}>
-            <div className="mb-4">
-              <label className="block text-white mb-2" htmlFor="email">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full p-2 rounded bg-gray-300 text-black"
-                placeholder="yourmail@gmail.com"
-                required
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-white mb-2" htmlFor="password">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="w-full p-2 rounded bg-gray-300 text-black"
-                required
-              />
-            </div>
-            <div className="flex justify-between items-center mb-6">
-              <a href="#" className="text-gray-300 text-sm">
-                Lupa Sandi?
-              </a>
-            </div>
-            <Suspense>
-              <InputCallbackUrl />
-            </Suspense>
-            <div className="flex justify-between items-center mb-6">
-              {message && (
-                <p className="text-red-600">Email atau Password salah</p>
-              )}
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-teal-400 text-white p-2 rounded text-lg font-bold"
-              aria-disabled={isPending}
-            >
-              Login
-            </button>
-          </form>
-        </div>
+        <h1 className="login-title">Login</h1>
+        <form action={action}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="form-control"
+              name="email"
+              style={{ backgroundColor: "#D9D9D9" }}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              name="password"
+              style={{ backgroundColor: "#D9D9D9" }}
+            />
+          </div>
+          <div className="flex justify-between items-center mb-6">
+            {message && (
+              <p className="text-red-600">Email atau Password salah</p>
+            )}
+          </div>
+          <div className="forgot-password">
+            <a href="#">Lupa Sandi?</a>
+          </div>
+          <button type="submit" className="btn login-button w-100 text-white">
+            LOGIN
+          </button>
+        </form>
       </div>
     </main>
   )

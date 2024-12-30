@@ -1,0 +1,92 @@
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.tiga-titik{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: auto;
+}
+.carwash{
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    width: 150px;
+    height: auto;
+}
+.container {
+    width: 500px;
+    background-color: #026D8E;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 50px 75px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.car-icon {
+    width: 80px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: block;
+    width: 400px;
+    margin: 0 auto 20px;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 60px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: bold;
+}
+
+.form-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.forgot-password {
+    font-size: 14px;
+    text-align: right;
+    margin-top: 5px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.forgot-password a {
+    color: #a9e4eb;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    font-weight: bold;
+    background-color: #00CCDD;
+    border: none;
+    margin-top: 80px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.login-button:hover {
+    background-color: #008891;
+}

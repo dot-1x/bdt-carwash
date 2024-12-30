@@ -4,8 +4,8 @@ declare module "next-auth" {
    * or the second parameter of the `session` callback, when using a database.
    */
   interface User {
-    role: ROLE
-    shift: Date | null
+    // role: ROLE
+    // shift: Date | null
   }
   /**
    * The shape of the account object returned in the OAuth providers' `account` callback,

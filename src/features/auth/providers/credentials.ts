@@ -17,9 +17,10 @@ export default Credentials({
       email: "test@gmail.com",
       id: "2",
       image: null,
-      name: "Kocheng",
+      nama: "Kocheng",
       role: ROLE.ADMIN,
       shift: null,
+      username: "kocheng",
     }
   },
 })
