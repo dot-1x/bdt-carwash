@@ -1,4 +1,7 @@
-export default function Profile() {
+import { auth } from "@/features/auth/auth"
+
+export default async function Profile() {
+  const session = await auth()
   return (
     <div className="profile-section">
       <form
@@ -28,8 +31,8 @@ export default function Profile() {
           width="50"
         />
         <div>
-          <h5 className="mb-0">Su'ud</h5>
-          <p className="mb-0">Admin</p>
+          <h5 className="mb-0">{session?.user?.name}</h5>
+          <p className="mb-0">{session?.user?.role}</p>
         </div>
       </div>
     </div>

@@ -68,14 +68,14 @@ export default function Sidebar() {
             Laporan
           </a>
           <nav className="nav flex-column subnav">
-            <a href="laporan_transaksi.html" className="nav-link">
+            <Link href="/dashboard/laporan" className="nav-link">
               <img src="/aset/laporan transaksi.svg" alt="" className="icon" />
               Laporan Transaksi
-            </a>
-            <a href="laporan_kinerja.html" className="nav-link">
+            </Link>
+            {/* <a href="/dashboard/kinerja" className="nav-link">
               <img src="/aset/laporan kinerja.svg" alt="" className="icon" />
               Laporan Kinerja
-            </a>
+            </a> */}
           </nav>
         </div>
         <div>
@@ -86,10 +86,10 @@ export default function Sidebar() {
             Pengaturan
           </a>
           <nav className="nav flex-column subnav">
-            <a href="akun.html" className="nav-link">
+            <Link href="/dashboard/account" className="nav-link">
               <img src="/aset/akun.svg" alt="" className="icon" />
               Akun
-            </a>
+            </Link>
             <button
               className="nav-link"
               onClick={async () => {
