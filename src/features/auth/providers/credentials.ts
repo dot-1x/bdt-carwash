@@ -14,13 +14,10 @@ export default Credentials({
       return null
     }
     return {
-      email: "test@gmail.com",
-      id: "2",
-      image: null,
-      nama: "Kocheng",
-      role: ROLE.ADMIN,
-      shift: null,
-      username: "kocheng",
+      id: "1",
+      email: "kocheng@carwash.com",
+      role: ROLE.SUPERADMIN,
+      name: "Kocheng",
     }
   },
 })

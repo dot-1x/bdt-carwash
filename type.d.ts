@@ -4,8 +4,7 @@ declare module "next-auth" {
    * or the second parameter of the `session` callback, when using a database.
    */
   interface User {
-    // role: ROLE
-    // shift: Date | null
+    role: ROLE
   }
   /**
    * The shape of the account object returned in the OAuth providers' `account` callback,
@@ -22,10 +21,14 @@ declare module "next-auth" {
 // The `JWT` interface can be found in the `next-auth/jwt` submodule
 import { JWT } from "next-auth/jwt"
 import { ROLE } from "@/lib/types"
+import { User } from "next-auth"
+
 declare module "next-auth/jwt" {
   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
   interface JWT {
     /** OpenID ID Token */
     idToken?: string
+    /** User object */
+    user?: User
   }
 }

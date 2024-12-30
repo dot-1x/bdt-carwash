@@ -1,4 +1,4 @@
 export enum ROLE {
-  ADMIN,
-  KARYAWAN,
+  ADMIN = "Admin",
+  SUPERADMIN = "SuperAdmin",
 }
