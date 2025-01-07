@@ -1,5 +1,7 @@
+import { ModalFillData } from "@/components/modal"
 import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
+import TransaksiModal from "./transaksi.component"
 
 export default function Page() {
   return (
@@ -9,7 +11,7 @@ export default function Page() {
       <button
         className="btn1 btn-primary mb-3"
         data-bs-toggle="modal"
-        data-bs-target="#MainModal"
+        data-bs-target="#TransaksiModal"
       >
         <i className="bi bi-plus-circle"></i> Tambah
       </button>
@@ -17,8 +19,12 @@ export default function Page() {
         <RowData
           headers={["no", "nama", "shift", "status", "data diri"]}
           data={[["1", "zex", "Malam", "aktif"]]}
+          modalName="TransaksiModal"
         />
       </div>
+      <ModalFillData modalName="TransaksiModal">
+        <TransaksiModal />
+      </ModalFillData>
     </div>
   )
 }

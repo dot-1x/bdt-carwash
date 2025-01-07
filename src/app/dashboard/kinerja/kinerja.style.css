@@ -1,0 +1,33 @@
+.custom-title {
+margin-left: 200px; /* Menambahkan jarak ke kiri untuk memindahkan ke kanan */
+font-weight: bold;
+}
+/* Kelas khusus untuk form */
+.form-custom {
+margin-top: 5px; /* Memberikan jarak antara judul dan form */
+margin-bottom: 30px;
+border-radius: 5px;
+margin-left: 50px; /* Memberikan sedikit margin ke kiri */
+display: flex; /* Menyusun form secara horizontal */
+gap: 20px; /* Memberikan jarak antar elemen dalam form */
+align-items: center; /* Menjaga agar elemen berada dalam satu garis horizontal */
+}
+
+/* Label dalam form */
+.form-custom label {
+font-size: 14px;
+margin-bottom: 0; /* Menghilangkan jarak bawah pada label */
+display: inline-block; /* Menjaga label dan input berada di baris yang sama */
+}
+
+/* Input untuk tanggal */
+.form-custom input[type="text"] {
+padding: 5px;
+border-radius: 5px;
+font-size: 14px;
+margin-top: 0; /* Menghilangkan margin atas */
+width: 180px; /* Menentukan lebar input */
+}
+h5{
+    margin-left: 10px;
+}

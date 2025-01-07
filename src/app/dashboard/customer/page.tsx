@@ -1,24 +1,30 @@
-import Profile from "@/components/profile"
+import { ModalFillData } from "@/components/modal"
 import { RowData } from "@/components/table"
+import Profile from "@/components/profile"
+import CustomerModal from "./customer.component"
+import { ButtonModalAdd } from "@/components/buttons"
 
 export default function Page() {
   return (
-    <div className="col-lg-9 col-md-8 main-content">
-      <Profile />
-      <h3 className="h3">Data Customer</h3>
-      <button
-        className="btn1 btn-primary mb-3"
-        data-bs-toggle="modal"
-        data-bs-target="#MainModal"
-      >
-        <i className="bi bi-plus-circle"></i> Tambah
-      </button>
-      <div className="table-container">
-        <RowData
-          headers={["no", "nama", "shift", "status", "data diri"]}
-          data={[["1", "zex", "Malam", "aktif"]]}
-        />
+    <>
+      <div className="col-lg-9 col-md-8 main-content">
+        <Profile />
+        <h3 className="h3">Data Customer</h3>
+        <ButtonModalAdd modalName="ModalCustomer" />
+        <div className="table-container">
+          <RowData
+            headers={["Nama Lengkap", "Email", "Telephone", "data diri"]}
+            data={[
+              ["Zex", "zex@localhost.com", "08123455667"],
+              ["Zex", "zex@localhost.com", "08123455667"],
+            ]}
+            modalName="ModalCustomer"
+          />
+        </div>
+        <ModalFillData modalName="ModalCustomer">
+          <CustomerModal />
+        </ModalFillData>
       </div>
-    </div>
+    </>
   )
 }
