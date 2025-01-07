@@ -46,7 +46,7 @@ model Karyawan {
   id        Int         @id @default(autoincrement())
   nama      String
   status    String
-  shift     DateTime
+  shift     String
   Transaksi Transaksi[]
 }
 
