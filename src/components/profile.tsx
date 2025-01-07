@@ -1,4 +1,5 @@
 import { auth } from "@/features/auth/auth"
+import Image from "next/image"
 
 export default async function Profile() {
   const session = await auth()
@@ -14,7 +15,7 @@ export default async function Profile() {
           aria-label="Search"
         />
         <span className="search-icon">
-          <img
+          <Image
             src="/aset/search.svg"
             alt="Search Icon"
             width="20"
@@ -24,11 +25,12 @@ export default async function Profile() {
       </form>
 
       <div className="profile-info d-flex align-items-center">
-        <img
+        <Image
           src="/aset/Profile user.svg"
           alt="Profile"
           className="rounded-circle me-3"
-          width="50"
+          width="25"
+          height="25"
         />
         <div>
           <h5 className="mb-0">{session?.user?.name}</h5>

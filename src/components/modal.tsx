@@ -1,85 +1,34 @@
-export function ModalAddData() {
+import React from "react"
+import { create } from "zustand"
+
+export const useModalState = create<{
+  formId: number
+  isEditing: boolean
+  setFormId: (formId: number) => void
+  setEdit: (editing: boolean) => void
+}>((set) => ({
+  formId: -1,
+  isEditing: false,
+  setFormId: (formId: number) => set(() => ({ formId: formId })),
+  setEdit: (editing: boolean) => set(() => ({ isEditing: editing })),
+}))
+
+export function ModalFillData({
+  children,
+  modalName,
+}: {
+  children: Readonly<React.ReactNode>
+  modalName: string
+}) {
   return (
     <div
       className="modal fade"
-      id="MainModal"
+      id={`${modalName}`}
       tabIndex={-1}
-      aria-labelledby="MainModalLabel"
+      aria-labelledby={modalName + "ModalLabel"}
       aria-hidden={true}
     >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="MainModalLabel">
-              Tambah Data
-            </h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div className="modal-body">
-            <div className="form-icon">
-              <img
-                src="/aset/karyawan.svg"
-                alt="User Icon"
-                className="rounded-circle"
-              />
-            </div>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="namaLengkap" className="form-label">
-                  Nama Lengkap
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="namaLengkap"
-                  placeholder="Masukkan nama lengkap"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="shift" className="form-label">
-                  Shift
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="3"
-                  className="form-control"
-                  id="email"
-                  placeholder="Pilih shift anda"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="status" className="form-label">
-                  Status
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="status"
-                  placeholder="Masukan status anda"
-                />
-              </div>
-            </form>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-danger"
-              data-bs-dismiss="modal"
-            >
-              Batal
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className="modal-dialog modal-dialog-centered">{children}</div>
     </div>
   )
 }

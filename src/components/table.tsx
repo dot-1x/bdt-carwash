@@ -1,14 +1,21 @@
 import { auth } from "@/features/auth/auth"
 import { ROLE } from "@/lib/types"
+import Image from "next/image"
+import { ButtonTableEdit } from "./buttons"
+
 export async function RowData({
   headers,
   data,
+  modalName,
   withButton = true,
 }: {
   headers: string[]
   data: string[][]
+  modalName?: string
   withButton?: boolean
 }) {
+  if (withButton && !modalName)
+    throw new Error("Missing modal name on using button")
   const session = await auth()
   return (
     <table className="table table-bordered">
@@ -33,20 +40,16 @@ export async function RowData({
               {...tableData}
               {withButton && (
                 <td>
-                  <button
-                    className="btn2 btn-success btn-sm"
-                    data-bs-toggle="modal"
-                    data-bs-target="#MainModal"
-                  >
-                    <i className="bi bi-pencil">
-                      <img src="/aset/edit.svg" alt="" />
-                    </i>
-                    Edit
-                  </button>
+                  <ButtonTableEdit modalName={modalName} userid={idx} />
                   {session?.user?.role === ROLE.SUPERADMIN && (
                     <button className="btn3 btn-danger btn-sm">
                       <i className="bi bi-trash">
-                        <img src="/aset/hapus.svg" alt="" />
+                        <Image
+                          src="/aset/hapus.svg"
+                          alt=""
+                          width="0"
+                          height="0"
+                        />
                       </i>
                       Hapus
                     </button>
