@@ -1,7 +1,6 @@
-import NextAuth, { User } from "next-auth"
+import NextAuth from "next-auth"
 import { NextResponse } from "next/server"
 import credentials from "./providers/credentials"
-import { AdapterUser } from "next-auth/adapters"
 import { ROLE } from "@/lib/types"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
