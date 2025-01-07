@@ -1,29 +1,42 @@
 "use client"
 import { authenticate } from "@/features/auth/actions/authenticate"
-import { useSearchParams } from "next/navigation"
-import React, { Suspense, useActionState } from "react"
-
-function InputCallbackUrl() {
-  const query = useSearchParams()
-  return (
-    <input
-      type="hidden"
-      name="cbUrl"
-      value={query.get("callbackUrl") || undefined}
-    />
-  )
-}
+import React, { useActionState } from "react"
+import Image from "next/image"
 
 export default function Page() {
   const [message, action, isPending] = useActionState(authenticate, undefined)
   return (
     <main>
-      <img src="/aset/3titik.svg" alt="3titik" className="tiga-titik" />
-      <img src="/aset/CarWash.svg" alt="carwash" className="carwash" />
+      <Image
+        src="/aset/3titik.svg"
+        alt="3titik"
+        className="tiga-titik"
+        width="0"
+        height="0"
+      />
+      <Image
+        src="/aset/CarWash.svg"
+        alt="carwash"
+        className="carwash"
+        width={250}
+        height={250}
+      />
       <div className="container">
         <div className="logo-container">
-          <img src="/aset/Car.svg" alt="Car Icon" className="car-icon" />
-          <img src="/aset/CarWash.svg" alt="CarWash Logo" className="logo" />
+          <Image
+            src="/aset/Car.svg"
+            alt="Car Icon"
+            className="car-icon"
+            width="0"
+            height="0"
+          />
+          <Image
+            src="/aset/CarWash.svg"
+            alt="CarWash Logo"
+            className="logo"
+            width="0"
+            height="0"
+          />
         </div>
         <h1 className="login-title">Login</h1>
         <form action={action}>
