@@ -30,7 +30,7 @@ export default async function Page() {
         </div>
 
         <div className="table-container">
-          <RowData
+          {/* <RowData
             headers={[
               "no plat",
               "Jenis Kendaraan",
@@ -39,7 +39,7 @@ export default async function Page() {
             ]}
             data={[["no plat", "Jenis Kendaraan", "Paket Pencucian", "Status"]]}
             withButton={false}
-          />
+          /> */}
         </div>
       </div>
     </>

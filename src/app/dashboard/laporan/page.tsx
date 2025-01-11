@@ -27,11 +27,11 @@ export default function Page() {
       </button>
 
       <div className="table-container">
-        <RowData
+        {/* <RowData
           headers={["no", "tanggal", "pelanggan", "total", "status"]}
           data={[["1", "2024-12-31", "Zex", "25000", "selesai"]]}
           withButton={false}
-        />
+        /> */}
       </div>
     </div>
   )

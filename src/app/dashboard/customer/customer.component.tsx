@@ -6,7 +6,10 @@ import Image from "next/image"
 import { useModalState } from "@/components/modal"
 
 export default function CustomerModal() {
-  const [message, action, status] = useActionState(customerAction, undefined)
+  const [state, action, isPending] = useActionState(customerAction, {
+    status: false,
+    message: "gagal",
+  })
   const formId = useModalState((state) => state.formId)
   const editing = useModalState((state) => state.isEditing)
   return (
@@ -30,6 +33,14 @@ export default function CustomerModal() {
             height="0"
           />
         </div>
+        {editing && (
+          <div className="mb-3">
+            <label htmlFor="namaLengkap" className="form-label">
+              Anda Sedang Mengubah Data Dengan ID:
+            </label>
+            <input type="text" name="form-id" value={formId} disabled />
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="namaLengkap" className="form-label">
             Nama Lengkap
@@ -40,18 +51,20 @@ export default function CustomerModal() {
             id="namaLengkap"
             placeholder="Masukkan nama lengkap"
             name="namaLengkap"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
+          <label htmlFor="alamat" className="form-label">
+            Alamat
           </label>
           <input
-            type="email"
+            type="text"
             className="form-control"
-            id="email"
-            placeholder="Masukkan email"
-            name="email"
+            id="alamat"
+            placeholder="Masukkan alamat"
+            name="alamat"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
@@ -60,11 +73,11 @@ export default function CustomerModal() {
           </label>
           <input
             type="tel"
-            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}"
             className="form-control"
             id="tel"
             placeholder="Masukkan nomor anda"
             name="tel"
+            required={!editing}
           />
         </div>
         {editing && <input type="hidden" name="form-id" value={formId} />}
@@ -77,7 +90,11 @@ export default function CustomerModal() {
         >
           Batal
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          aria-disabled={isPending}
+        >
           Submit
         </button>
       </div>

@@ -2,8 +2,15 @@
 import { useActionState } from "react"
 import { karyawanAction } from "./karyawan.action"
 import Image from "next/image"
+import { useModalState } from "@/components/modal"
+
 export default function KaryawanModal() {
-  const [message, action, status] = useActionState(karyawanAction, undefined)
+  const [state, action, status] = useActionState(karyawanAction, {
+    status: false,
+    message: "",
+  })
+  const formId = useModalState((state) => state.formId)
+  const editing = useModalState((state) => state.isEditing)
   return (
     <form className="modal-content" action={action}>
       <div className="modal-header">
@@ -25,6 +32,14 @@ export default function KaryawanModal() {
             width="0"
           />
         </div>
+        {editing && (
+          <div className="mb-3">
+            <label htmlFor="namaLengkap" className="form-label">
+              Anda Sedang Mengubah Data Dengan ID:
+            </label>
+            <input type="text" name="form-id" value={formId} disabled />
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="namaLengkap" className="form-label">
             Nama Lengkap
@@ -35,21 +50,29 @@ export default function KaryawanModal() {
             id="namaLengkap"
             placeholder="Masukkan nama lengkap"
             name="namaLengkap"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
           <label htmlFor="shift" className="form-label">
             Shift
           </label>
-          <input
-            type="number"
-            min="1"
-            max="3"
-            className="form-control"
-            id="shift"
-            placeholder="Pilih shift anda"
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            required={!editing}
             name="shift"
-          />
+          >
+            <option defaultChecked value="Pagi">
+              pagi
+            </option>
+            <option defaultChecked value="Siang">
+              siang
+            </option>
+            <option defaultChecked value="Sore">
+              sore
+            </option>
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="status" className="form-label">
@@ -61,8 +84,10 @@ export default function KaryawanModal() {
             id="status"
             placeholder="Masukan status anda"
             name="status"
+            required={!editing}
           />
         </div>
+        {editing && <input type="hidden" name="form-id" value={formId} />}
       </div>
       <div className="modal-footer">
         <button

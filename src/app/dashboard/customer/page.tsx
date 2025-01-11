@@ -3,8 +3,10 @@ import { RowData } from "@/components/table"
 import Profile from "@/components/profile"
 import CustomerModal from "./customer.component"
 import { ButtonModalAdd } from "@/components/buttons"
+import { prismaClient } from "@/lib/prisma"
 
-export default function Page() {
+export default async function Page() {
+  const customer = await prismaClient.customer.findMany()
   return (
     <>
       <div className="col-lg-9 col-md-8 main-content">
@@ -13,12 +15,12 @@ export default function Page() {
         <ButtonModalAdd modalName="ModalCustomer" />
         <div className="table-container">
           <RowData
-            headers={["Nama Lengkap", "Email", "Telephone", "data diri"]}
-            data={[
-              ["Zex", "zex@localhost.com", "08123455667"],
-              ["Zex", "zex@localhost.com", "08123455667"],
-            ]}
+            headers={["Nama Lengkap", "Telephon", "Alamat", "data diri"]}
+            data={customer.map((v) => {
+              return { data: [v.nama, v.telephon, v.alamat], data_id: v.id }
+            })}
             modalName="ModalCustomer"
+            tableType="customer"
           />
         </div>
         <ModalFillData modalName="ModalCustomer">

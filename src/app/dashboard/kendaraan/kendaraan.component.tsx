@@ -1,10 +1,29 @@
 "use client"
 import Image from "next/image"
-import { useActionState } from "react"
+import { useActionState, useEffect, useState } from "react"
 import { kendaraanAction } from "./kendaraan.action"
+import { Customer } from "@prisma/client"
 
 export default function KendaraanModal() {
   const [message, action, status] = useActionState(kendaraanAction, undefined)
+  const [customers, setCustomer] = useState<Customer[]>([])
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await fetch("/api/customers")
+        if (response.ok) {
+          const data = await response.json()
+          setCustomer(data.data)
+        } else {
+          console.error("Failed to fetch customers:", response.statusText)
+        }
+      } catch (error) {
+        console.error("Error fetching customers:", error)
+      }
+    }
+
+    fetchCustomers()
+  }, [])
   return (
     <form className="modal-content" action={action}>
       <div className="modal-header">
@@ -32,13 +51,14 @@ export default function KendaraanModal() {
           <label htmlFor="pemilik" className="form-label">
             Pemilik
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="pemilik"
-            placeholder="Masukan nama pemilik"
-            name="pemilik"
-          />
+          <select className="form-select" aria-label="Default select example">
+            <option defaultValue={undefined}>Pilih Pemilik</option>
+            {customers.map((customer) => (
+              <option key={customer.id} value={customer.id}>
+                {customer.nama}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="jeniskendaraan" className="form-label">

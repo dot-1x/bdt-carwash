@@ -2,8 +2,11 @@ import { ModalFillData } from "@/components/modal"
 import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
 import KaryawanModal from "./karwayan.component"
+import { prismaClient } from "@/lib/prisma"
 
-export default function Page() {
+export default async function Page() {
+  const karyawan = await prismaClient.karyawan.findMany()
+
   return (
     <div className="col-lg-9 col-md-8 main-content">
       <Profile />
@@ -17,9 +20,12 @@ export default function Page() {
       </button>
       <div className="table-container">
         <RowData
-          headers={["no", "nama", "shift", "status", "data diri"]}
-          data={[["1", "zex", "Malam", "aktif"]]}
+          headers={["Nama", "Shift", "Status", "data diri"]}
+          data={karyawan.map((v) => {
+            return { data: [v.nama, v.shift, v.status], data_id: v.id }
+          })}
           modalName="ModalKaryawan"
+          tableType="karyawan"
         />
       </div>
       <ModalFillData modalName="ModalKaryawan">
