@@ -56,7 +56,7 @@ model Kendaraan {
   jenis       JenisKendaraan
   plat        String
   id_customer Int
-  customer    Customer       @relation(fields: [id_customer], references: [id])
+  customer    Customer       @relation(fields: [id_customer], references: [id], onDelete: Cascade)
   Transaksi   Transaksi[]
 }
 
