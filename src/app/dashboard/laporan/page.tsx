@@ -1,8 +1,14 @@
 import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
 import "./laporan.style.css"
+import { prismaClient } from "@/lib/prisma"
 
-export default function Page() {
+export default async function Page() {
+  const transaksi = await prismaClient.transaksi.findMany({
+    include: {
+      customer: true,
+    },
+  })
   return (
     <div className="col-lg-9 col-md-8 main-content">
       <Profile />
@@ -27,11 +33,21 @@ export default function Page() {
       </button>
 
       <div className="table-container">
-        {/* <RowData
-          headers={["no", "tanggal", "pelanggan", "total", "status"]}
-          data={[["1", "2024-12-31", "Zex", "25000", "selesai"]]}
+        <RowData
+          headers={["No. Transaksi", "Pelanggan", "Total", "Tanggal"]}
+          data={transaksi.map((v) => {
+            return {
+              data: [
+                v.id,
+                v.customer.nama,
+                `Rp. ${v.total_harga.toLocaleString()}`,
+                v.tanggal.toLocaleString(),
+              ],
+              data_id: v.id,
+            }
+          })}
           withButton={false}
-        /> */}
+        />
       </div>
     </div>
   )

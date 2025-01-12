@@ -15,13 +15,19 @@ export async function paketAction(
     harga: parseInt(formData.get("harga") as string),
     deskripsi: formData.get("deskripsi") as string,
   }
-  await prismaClient.paket.upsert({
-    create: data as Paket,
-    where: {
-      id: parseInt(formData.get("form-id")?.toString() as string) || -1,
-    },
-    update: filterObject(data),
-  })
+  const formId = parseInt(formData.get("form-id")?.toString() as string)
+  if (!formId) {
+    await prismaClient.paket.create({
+      data: data,
+    })
+  } else {
+    await prismaClient.paket.update({
+      data: filterObject(data),
+      where: {
+        id: formId,
+      },
+    })
+  }
   revalidatePath("/dashboard/paket")
   return {
     status: true,

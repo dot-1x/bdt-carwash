@@ -16,7 +16,14 @@ export default async function Page() {
         <RowData
           headers={["Nama", "Harga", "Deskripsi", "Ubah"]}
           data={paket.map((v) => {
-            return { data: [v.nama_paket, v.harga, v.deskripsi], data_id: v.id }
+            return {
+              data: [
+                v.nama_paket,
+                `Rp. ${v.harga.toLocaleString()}`,
+                v.deskripsi,
+              ],
+              data_id: v.id,
+            }
           })}
           modalName="ModalPaket"
           tableType="paket"
