@@ -74,11 +74,11 @@ model Transaksi {
   id_customer  Int
   id_karyawan  Int
   id_paket     Int
-  tanggal      DateTime
   total_harga  Float
-  metode       String
   uang_dibayar Float
 
+  metode       String   @default("tunai")
+  tanggal      DateTime @default(now())
   kendaraan Kendaraan @relation(fields: [id_kendaraan], references: [id])
   customer  Customer  @relation(fields: [id_customer], references: [id])
   karyawan  Karyawan  @relation(fields: [id_karyawan], references: [id])
