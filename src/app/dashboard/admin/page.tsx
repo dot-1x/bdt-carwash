@@ -19,7 +19,7 @@ export default async function Page() {
         <ButtonModalAdd modalName="ModalAdmin" />
         <div className="table-container">
           <RowData
-            headers={["Nama", "Username", "Role", "Action"]}
+            headers={["Nama", "Username", "Role", "Aksi"]}
             data={admins.map((v) => {
               return { data: [v.nama, v.username, v.role], data_id: v.id }
             })}

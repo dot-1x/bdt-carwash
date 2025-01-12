@@ -14,7 +14,7 @@ export default async function Page() {
       <ButtonModalAdd modalName="ModalPaket" />
       <div className="table-container">
         <RowData
-          headers={["Nama", "Harga", "Deskripsi", "Ubah"]}
+          headers={["Nama", "Harga", "Deskripsi", "Aksi"]}
           data={paket.map((v) => {
             return {
               data: [

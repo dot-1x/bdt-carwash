@@ -16,7 +16,7 @@ export default async function Page() {
       <ButtonModalAdd modalName="ModalKendaraan" />
       <div className="table-container">
         <RowData
-          headers={["No. Plat", "Jenis", "Pemilik", "Merk", "data diri"]}
+          headers={["No. Plat", "Jenis", "Pemilik", "Merk", "Aksi"]}
           data={kendaraan.map((v) => {
             return {
               data: [v.plat, v.jenis, v.customer.nama, v.merk],
