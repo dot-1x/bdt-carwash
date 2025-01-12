@@ -1,23 +1,33 @@
 import { ROLE } from "@/lib/types"
 import Credentials from "next-auth/providers/credentials"
+import bcrypt from "bcryptjs"
+import { prismaClient } from "@/lib/prisma"
+
+const roleMap: { [k: string]: ROLE } = {
+  SUPERADMIN: ROLE.SUPERADMIN,
+  ADMIN: ROLE.ADMIN,
+}
 
 export default Credentials({
   credentials: {
-    email: { label: "Email", type: "email" },
+    username: { label: "Username", type: "text" },
     password: { label: "Password", type: "password" },
   },
   async authorize(credentials) {
-    if (
-      credentials.email !== process.env.EMAIL ||
-      credentials.password !== process.env.PASSWORD
-    ) {
-      return null
-    }
+    const user = await prismaClient.admin.findUnique({
+      where: { username: credentials.username as string },
+    })
+    if (!user) return null
+    const verified = await bcrypt.compare(
+      credentials.password as string,
+      user.password
+    )
+    if (!verified) return null
+
     return {
-      id: "1",
-      email: "kocheng@carwash.com",
-      role: ROLE.SUPERADMIN,
-      name: "Kocheng",
+      name: user.nama,
+      username: user.username,
+      role: roleMap[user.role.toString()],
     }
   },
 })

@@ -41,14 +41,14 @@ export default function Page() {
         <h1 className="login-title">Login</h1>
         <form action={action}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email
+            <label htmlFor="username" className="form-label">
+              Username
             </label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="username"
               className="form-control"
-              name="email"
+              name="username"
               style={{ backgroundColor: "#D9D9D9" }}
             />
           </div>
@@ -66,13 +66,17 @@ export default function Page() {
           </div>
           <div className="flex justify-between items-center mb-6">
             {message && (
-              <p className="text-red-600">Email atau Password salah</p>
+              <p className="text-red-600">Username atau Password salah</p>
             )}
           </div>
           <div className="forgot-password">
             <a href="#">Lupa Sandi?</a>
           </div>
-          <button type="submit" className="btn login-button w-100 text-white">
+          <button
+            type="submit"
+            className="btn login-button w-100 text-white"
+            disabled={isPending}
+          >
             LOGIN
           </button>
         </form>

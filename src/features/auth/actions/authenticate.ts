@@ -9,7 +9,7 @@ export async function authenticate(
 ) {
   try {
     await signIn("credentials", {
-      email: formData.get("email"),
+      username: formData.get("username"),
       password: formData.get("password"),
       redirect: true,
       redirectTo: (formData.get("cbUrl") as string) || "/dashboard",
@@ -18,7 +18,7 @@ export async function authenticate(
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return "Email atau Password salah!"
+          return "Username atau Password salah!"
         default:
           return "Something went wrong."
       }

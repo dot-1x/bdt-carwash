@@ -37,7 +37,7 @@ model Customer {
 model Admin {
   id       Int    @id @default(autoincrement())
   nama     String
-  username String
+  username String @unique
   password String
   role     Role   @default(ADMIN)
 }
