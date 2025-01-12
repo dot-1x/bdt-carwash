@@ -1,7 +1,7 @@
 import { ModalFillData } from "@/components/modal"
 import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
-import KaryawanModal from "./karwayan.component"
+import KaryawanModal from "./karwayan.form"
 import { prismaClient } from "@/lib/prisma"
 
 export default async function Page() {

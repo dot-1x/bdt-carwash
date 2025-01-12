@@ -1,0 +1,61 @@
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+}
+
+/* Menata container agar memiliki margin dan padding yang cukup */
+.container {
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Mengatur kolom ke-3 agar teksnya bold */
+table td:nth-child(3),
+table th:nth-child(3) {
+  font-weight: bold;
+}
+
+/* Menambahkan box pada profile-info */
+.profile-diri {
+  text-align: center;
+  border: 1px solid #ccc; /* Warna border abu-abu */
+  padding: 20px; /* Memberi ruang di dalam box */
+  background-color: #ffffff; /* Warna latar belakang kotak */
+  border-radius: 8px; /* Membuat sudut box menjadi bulat */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+}
+
+/* Menghilangkan border pada tabel dan sel */
+table {
+  border-spacing: 15px; /* Memberikan jarak antar sel */
+  margin-left: auto;
+  margin-right: auto;
+  border: none; /* Menghilangkan border tabel */
+}
+
+/* Menghilangkan border pada setiap sel */
+table th,
+table td {
+  padding: 15px; /* Memberikan jarak di dalam setiap sel */
+  text-align: left;
+  border: none; /* Menghilangkan border pada sel */
+}
+
+/* Menata tombol logout */
+.logout-button {
+  margin-top: 20px; /* Memberi jarak antara box dan tombol */
+  padding: 10px 20px; /* Memberi padding pada tombol */
+  background-color: #4880ff; /* Warna latar belakang tombol */
+  color: white; /* Warna teks tombol */
+  border: none; /* Menghapus border default */
+  border-radius: 5px; /* Membuat sudut tombol bulat */
+  cursor: pointer; /* Menambahkan pointer saat hover */
+  position: relative;
+  left: 380px;
+}
+
+.h2 {
+  margin-left: 20px; /* Menambahkan jarak ke kiri untuk memindahkan ke kanan */
+  font-weight: bold;
+}

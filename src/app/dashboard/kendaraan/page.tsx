@@ -1,7 +1,7 @@
 import { ModalFillData } from "@/components/modal"
 import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
-import KendaraanModal from "./kendaraan.component"
+import KendaraanModal from "./kendaraan.form"
 import { prismaClient } from "@/lib/prisma"
 import { ButtonModalAdd } from "@/components/buttons"
 

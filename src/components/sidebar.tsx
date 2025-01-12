@@ -1,27 +1,20 @@
 import Link from "next/link"
-import { signOut } from "@/features/auth/auth"
+import { auth, signOut } from "@/features/auth/auth"
 import Image from "next/image"
+import { ROLE } from "@/lib/types"
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  const session = await auth()
   return (
     <div className="col-lg-3 col-md-4 sidebar">
       <div className="p-3 text-start">
-        <Image
-          src="/aset/3titik.svg"
-          alt="Logo Web"
-          className="img-fluid mb-4"
-          style={{ maxWidth: "150px" }}
-          width={25}
-          height={25}
-        />
-        <br />
         <Image
           src="/aset/CarWash.svg"
           alt="Logo Web"
           className="img-fluid mb-4"
           style={{ maxWidth: "150px" }}
-          width={25}
-          height={25}
+          width={150}
+          height={150}
         />
       </div>
       <nav className="nav flex-column">
@@ -51,16 +44,18 @@ export default function Sidebar() {
             Kelola Data
           </a>
           <nav className="nav flex-column subnav">
-            <Link href="/dashboard/user" className="nav-link">
-              <Image
-                src="/aset/admin.svg"
-                alt=""
-                className="icon"
-                width={25}
-                height={25}
-              />
-              Admin
-            </Link>
+            {session?.user?.role === ROLE.SUPERADMIN && (
+              <Link href="/dashboard/admin" className="nav-link">
+                <Image
+                  src="/aset/admin.svg"
+                  alt=""
+                  className="icon"
+                  width={25}
+                  height={25}
+                />
+                Admin
+              </Link>
+            )}
             <Link href="/dashboard/karyawan" className="nav-link">
               <Image
                 src="/aset/karyawan.svg"

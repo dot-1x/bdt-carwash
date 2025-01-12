@@ -3,13 +3,14 @@ import bcrypt, { genSalt } from "bcryptjs"
 
 const prisma = new PrismaClient()
 async function main() {
-  const salt = await genSalt(16)
-  const generated_password = await bcrypt.hash("admin1", salt)
+  const password = "superadmin"
+  const salt = await genSalt(6)
+  const hashed = await bcrypt.hash(password, salt)
   await prisma.admin.create({
     data: {
-      nama: "admin1",
-      username: "admin1",
-      password: generated_password,
+      nama: "superadmin",
+      username: "superadmin",
+      password: hashed,
       role: Role.SUPERADMIN,
     },
   })
