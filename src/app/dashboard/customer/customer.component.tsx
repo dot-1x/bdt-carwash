@@ -6,10 +6,7 @@ import Image from "next/image"
 import { useModalState } from "@/components/modal"
 
 export default function CustomerModal() {
-  const [state, action, isPending] = useActionState(customerAction, {
-    status: false,
-    message: "gagal",
-  })
+  const [state, action, isPending] = useActionState(customerAction, undefined)
   const formId = useModalState((state) => state.formId)
   const editing = useModalState((state) => state.isEditing)
   return (
@@ -38,7 +35,7 @@ export default function CustomerModal() {
             <label htmlFor="namaLengkap" className="form-label">
               Anda Sedang Mengubah Data Dengan ID:
             </label>
-            <input type="text" name="form-id" value={formId} disabled />
+            <input type="text" name="form-id" value={formId} readOnly />
           </div>
         )}
         <div className="mb-3">
@@ -80,7 +77,6 @@ export default function CustomerModal() {
             required={!editing}
           />
         </div>
-        {editing && <input type="hidden" name="form-id" value={formId} />}
       </div>
       <div className="modal-footer">
         <button

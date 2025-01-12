@@ -1,8 +1,16 @@
+"use client"
+import { useModalState } from "@/components/modal"
 import Image from "next/image"
+import { useActionState } from "react"
+import { paketAction } from "./paket.action"
 
 export default function PaketModal() {
+  const [state, action, status] = useActionState(paketAction, undefined)
+  const formId = useModalState((state) => state.formId)
+  const editing = useModalState((state) => state.isEditing)
+
   return (
-    <form className="modal-content">
+    <form className="modal-content" action={action}>
       <div className="modal-header">
         <h5 className="modal-title" id="tambahAdminModalLabel">
           Tambah/Ubah Paket Pencucian
@@ -24,6 +32,20 @@ export default function PaketModal() {
             width="0"
           />
         </div>
+        {editing && (
+          <div className="mb-3">
+            <label htmlFor="form-id" className="form-label">
+              Anda Sedang Mengubah Data Dengan ID:
+            </label>
+            <input
+              id="form-id"
+              type="number"
+              name="form-id"
+              value={formId}
+              readOnly
+            />
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="namaPaket" className="form-label">
             Nama Paket
@@ -34,6 +56,7 @@ export default function PaketModal() {
             id="namaPaket"
             placeholder="Masukkan nama paket"
             name="namaPaket"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
@@ -42,12 +65,11 @@ export default function PaketModal() {
           </label>
           <input
             type="number"
-            min="1"
-            max="3"
             className="form-control"
             id="harga"
             placeholder="Pilih harga"
             name="harga"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
@@ -60,6 +82,7 @@ export default function PaketModal() {
             id="deskripsi"
             placeholder="Masukan deskripsi"
             name="deskripsi"
+            required={!editing}
           />
         </div>
       </div>

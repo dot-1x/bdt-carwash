@@ -3,6 +3,7 @@ import Profile from "@/components/profile"
 import { RowData } from "@/components/table"
 import KendaraanModal from "./kendaraan.component"
 import { prismaClient } from "@/lib/prisma"
+import { ButtonModalAdd } from "@/components/buttons"
 
 export default async function Page() {
   const kendaraan = await prismaClient.kendaraan.findMany({
@@ -12,13 +13,7 @@ export default async function Page() {
     <div className="col-lg-9 col-md-8 main-content">
       <Profile />
       <h3 className="h3">Data Kendaraan</h3>
-      <button
-        className="btn1 btn-primary mb-3"
-        data-bs-toggle="modal"
-        data-bs-target="#ModalKendaraan"
-      >
-        <i className="bi bi-plus-circle"></i> Tambah
-      </button>
+      <ButtonModalAdd modalName="ModalKendaraan" />
       <div className="table-container">
         <RowData
           headers={["No. Plat", "Jenis", "Pemilik", "Merk", "data diri"]}
@@ -29,6 +24,7 @@ export default async function Page() {
             }
           })}
           modalName="ModalKendaraan"
+          tableType="kendaraan"
         />
       </div>
       <ModalFillData modalName="ModalKendaraan">

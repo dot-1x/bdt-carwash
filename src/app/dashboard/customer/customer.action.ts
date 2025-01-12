@@ -7,7 +7,7 @@ import { Customer } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 
 export async function customerAction(
-  state: formState,
+  state: formState | undefined,
   formData: FormData
 ): Promise<formState> {
   const data = {

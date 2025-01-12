@@ -2,11 +2,14 @@
 import Image from "next/image"
 import { useActionState, useEffect, useState } from "react"
 import { kendaraanAction } from "./kendaraan.action"
-import { Customer } from "@prisma/client"
+import { Customer, JenisKendaraan } from "@prisma/client"
+import { useModalState } from "@/components/modal"
 
 export default function KendaraanModal() {
-  const [message, action, status] = useActionState(kendaraanAction, undefined)
+  const [state, action, status] = useActionState(kendaraanAction, undefined)
   const [customers, setCustomer] = useState<Customer[]>([])
+  const formId = useModalState((state) => state.formId)
+  const editing = useModalState((state) => state.isEditing)
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -47,12 +50,31 @@ export default function KendaraanModal() {
             height="0"
           />
         </div>
+        {editing && (
+          <div className="mb-3">
+            <label htmlFor="form-id" className="form-label">
+              Anda Sedang Mengubah Data Dengan ID:
+            </label>
+            <input
+              id="form-id"
+              type="number"
+              name="form-id"
+              value={formId}
+              readOnly
+            />
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="pemilik" className="form-label">
             Pemilik
           </label>
-          <select className="form-select" aria-label="Default select example">
-            <option defaultValue={undefined}>Pilih Pemilik</option>
+          <select
+            className="form-select"
+            aria-label="Pilih Pemilik Kendaraan"
+            name="pemilik"
+            id="pemilik"
+            required={!editing}
+          >
             {customers.map((customer) => (
               <option key={customer.id} value={customer.id}>
                 {customer.nama}
@@ -64,13 +86,18 @@ export default function KendaraanModal() {
           <label htmlFor="jeniskendaraan" className="form-label">
             Jenis Kendaraan
           </label>
-          <input
-            type="text"
-            className="form-control"
+          <select
+            className="form-select"
+            aria-label="Pilih jenis Kendaraan"
+            name="jeniskendaraan"
             id="jeniskendaraan"
-            placeholder="Masukan jenis kendaraan"
-            name="jenisKendaraan"
-          />
+            required={!editing}
+          >
+            <option value="MOTOR">MOTOR</option>
+            <option value="MOBIL">MOBIL</option>
+            <option value="BUS">BUS</option>
+            <option value="TRUK">TRUK</option>
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="merek" className="form-label">
@@ -82,6 +109,7 @@ export default function KendaraanModal() {
             id="merek"
             placeholder="Masukan merek"
             name="merek"
+            required={!editing}
           />
         </div>
         <div className="mb-3">
@@ -89,11 +117,12 @@ export default function KendaraanModal() {
             Plat nomor
           </label>
           <input
-            type="number"
+            type="text"
             className="form-control"
             id="plat"
             placeholder="Masukan nomor plat"
             name="plat"
+            required={!editing}
           />
         </div>
       </div>
